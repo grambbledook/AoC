@@ -48,8 +48,8 @@ func init() {
 	maps.Copy(taskTwoDict, wordsToDigits)
 }
 
-func Compute(f task.Task) int {
-	lines := util.ReadFile("day1/input")
+func Compute(f task.LineTask, file string) int {
+	lines := util.ReadLines(file)
 
 	return lang.Fold(lines, 0, func(a int, b string) int { return a + f(b) })
 }

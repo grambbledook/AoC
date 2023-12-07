@@ -14,7 +14,7 @@ func Max[N Number](a, b N) N {
 }
 
 func Sum[N Number](nums []N) N {
-	return lang.Fold(nums, 0, func(a, b N) N { return a * b })
+	return lang.Fold(nums, 0, func(a, b N) N { return a + b })
 }
 
 func Product[N Number](nums []N) N {

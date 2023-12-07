@@ -13,8 +13,8 @@ var limits = map[string]int{
 	"blue":  14,
 }
 
-func Compute(f task.Task) int {
-	lines := util.ReadFile("day2/input")
+func Compute(f task.LineTask, file string) int {
+	lines := util.ReadLines(file)
 
 	return lang.Fold(lines, 0, func(a int, b string) int { return a + f(b) })
 }

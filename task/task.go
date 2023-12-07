@@ -1,3 +1,4 @@
 package task
 
-type Task func(string) int
+type LineTask func(string) int
+type MatrixTask func([]string) int

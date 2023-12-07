@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-func ReadFile(name string) []string {
+func ReadLines(name string) []string {
 	open, _ := os.Open(name)
 	defer open.Close()
 
@@ -17,4 +17,19 @@ func ReadFile(name string) []string {
 	}
 
 	return lines
+}
+
+func ReadMatrix(name string) [][]rune {
+	open, _ := os.Open(name)
+	defer open.Close()
+
+	in := bufio.NewReader(open)
+
+	var lines [][]rune
+	for line, _, err := in.ReadLine(); err == nil; line, _, err = in.ReadLine() {
+		lines = append(lines, []rune(string(line)))
+	}
+
+	return lines
+
 }
