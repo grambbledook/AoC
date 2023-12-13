@@ -28,7 +28,7 @@ func FilterValues[M ~map[K]V, K comparable, V any](dict M, f func(V) bool) M {
 	return filtered
 }
 
-func Map[A, B interface{}](arr []A, f func(A) B) []B {
+func Map[A, B any](arr []A, f func(A) B) []B {
 	var mapped []B
 	for _, a := range arr {
 		mapped = append(mapped, f(a))
@@ -36,7 +36,7 @@ func Map[A, B interface{}](arr []A, f func(A) B) []B {
 	return mapped
 }
 
-func Fold[A, B interface{}](arr []B, identity A, f func(A, B) A) A {
+func Fold[A, B any](arr []B, identity A, f func(A, B) A) A {
 	acc := identity
 	for _, a := range arr {
 		acc = f(acc, a)
@@ -50,4 +50,12 @@ func IntRange(start int, end int) []int {
 		rng = append(rng, i)
 	}
 	return rng
+}
+
+func Chunked[A any](arr []A, size int) [][]A {
+	var chunks [][]A
+	for i := 0; i < len(arr); i += size {
+		chunks = append(chunks, arr[i:i+size])
+	}
+	return chunks
 }
