@@ -20,3 +20,13 @@ func Sum[N Number](nums []N) N {
 func Product[N Number](nums []N) N {
 	return lang.Fold(nums, 1, func(a, b N) N { return a * b })
 }
+
+func Min[N Number](ch chan N) N {
+	min := <-ch
+	for n := range ch {
+		if n < min {
+			min = n
+		}
+	}
+	return min
+}
