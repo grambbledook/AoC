@@ -1,6 +1,8 @@
 package util
 
-import "github.com/grambbledook/adventofcode2023/lang"
+import (
+	"github.com/grambbledook/adventofcode2023/2023/lang"
+)
 
 type Number interface {
 	int | int64 | float64
@@ -29,4 +31,11 @@ func Min[N Number](ch chan N) N {
 		}
 	}
 	return min
+}
+
+func Abs[N Number](num N) N {
+	if num < 0 {
+		return -num
+	}
+	return num
 }

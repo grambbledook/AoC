@@ -1,7 +1,7 @@
 package day5
 
 import (
-	"github.com/grambbledook/adventofcode2023/lang"
+	lang2 "github.com/grambbledook/adventofcode2023/2023/lang"
 	"github.com/grambbledook/adventofcode2023/util"
 	"slices"
 	"strings"
@@ -37,7 +37,7 @@ type Data struct {
 
 func Task1(data []string) int {
 	graph := buildGraph(data)
-	locations := lang.Map(graph.Seeds, func(u int) int { return traverse(u, graph) })
+	locations := lang2.Map(graph.Seeds, func(u int) int { return traverse(u, graph) })
 
 	return slices.Min(locations)
 }
@@ -63,8 +63,8 @@ func Task2(data []string) int {
 }
 
 func buildGraph(str []string) Data {
-	seeds := lang.Map(strings.Fields(str[0])[1:], lang.Int)
-	seedRanges := lang.Map(lang.Chunked(seeds, 2), func(r []int) Range { return Range{r[0], r[0] + r[1]} })
+	seeds := lang2.Map(strings.Fields(str[0])[1:], lang2.Int)
+	seedRanges := lang2.Map(lang2.Chunked(seeds, 2), func(r []int) Range { return Range{r[0], r[0] + r[1]} })
 
 	seedSoil, soil := populateMap(str, 3)
 	soilFert, fert := populateMap(str, soil)
@@ -95,11 +95,11 @@ func populateMap(str []string, idx int) ([]Edge, int) {
 			break
 		}
 
-		fields := lang.Fields(str[idx])
+		fields := lang2.Fields(str[idx])
 
-		size := lang.Int(fields(2, false))
-		src := lang.Int(fields(1, false))
-		dest := lang.Int(fields(0, false))
+		size := lang2.Int(fields(2, false))
+		src := lang2.Int(fields(1, false))
+		dest := lang2.Int(fields(0, false))
 
 		collection = append(collection, Edge{
 			Dest: Range{dest, dest + size},

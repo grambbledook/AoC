@@ -1,13 +1,13 @@
 package day4
 
 import (
-	"github.com/grambbledook/adventofcode2023/lang"
+	lang2 "github.com/grambbledook/adventofcode2023/2023/lang"
 	"math"
 	"strings"
 )
 
 func Task1(str []string) int {
-	return lang.Fold(str, 0, func(a int, b string) int {
+	return lang2.Fold(str, 0, func(a int, b string) int {
 		_, total := processCard(b)
 
 		if total == 0 {
@@ -23,7 +23,7 @@ func Task2(data []string) int {
 
 	for _, c := range data {
 		card, total := processCard(c)
-		cards[card] = lang.IntRange(card+1, card+total+1)
+		cards[card] = lang2.IntRange(card+1, card+total+1)
 	}
 
 	total := 0
@@ -51,12 +51,12 @@ func processCard(str string) (int, int) {
 		if parsed[i] == "|" {
 			break
 		}
-		winningNumbers[lang.Int(parsed[i])] = true
+		winningNumbers[lang2.Int(parsed[i])] = true
 	}
 
 	yourNumbers := make(map[int]bool)
 	for ; i < len(parsed); i++ {
-		yourNumbers[lang.Int(parsed[i])] = true
+		yourNumbers[lang2.Int(parsed[i])] = true
 	}
 
 	total := 0
@@ -66,5 +66,5 @@ func processCard(str string) (int, int) {
 		}
 	}
 
-	return lang.Int(strings.TrimRight(parsed[1], ":")), total
+	return lang2.Int(strings.TrimRight(parsed[1], ":")), total
 }
