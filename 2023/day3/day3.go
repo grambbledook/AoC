@@ -1,8 +1,8 @@
 package day3
 
 import (
-	"github.com/grambbledook/adventofcode2023/lang"
-	"github.com/grambbledook/adventofcode2023/task"
+	lang2 "github.com/grambbledook/adventofcode2023/2023/lang"
+	"github.com/grambbledook/adventofcode2023/2023/task"
 	"github.com/grambbledook/adventofcode2023/util"
 	"unicode"
 )
@@ -21,7 +21,7 @@ func Task1(grid []string) int {
 	print(s)
 	p := parts(s)
 	print(p)
-	maped := lang.Map(p, func(s Serial) int { return s.Num })
+	maped := lang2.Map(p, func(s Serial) int { return s.Num })
 	val := util.Sum(maped)
 	return val
 }
@@ -43,7 +43,7 @@ func parse(grid []string) [][]any {
 			if unicode.IsDigit(c) {
 				num += string(c)
 			} else if num != "" {
-				serial := Serial{lang.Int(num)}
+				serial := Serial{lang2.Int(num)}
 				for k := 0; k < len(num); k++ {
 					parsed[i][j-k] = serial
 				}
@@ -60,7 +60,7 @@ func parse(grid []string) [][]any {
 }
 
 func parts(grid [][]any) []Serial {
-	parts := lang.NewIdentityMap[Serial]()
+	parts := lang2.NewIdentityMap[Serial]()
 
 	for i, line := range grid {
 		for j, c := range line {

@@ -1,8 +1,8 @@
 package day1
 
 import (
-	"github.com/grambbledook/adventofcode2023/lang"
-	"github.com/grambbledook/adventofcode2023/task"
+	"github.com/grambbledook/adventofcode2023/2023/lang"
+	"github.com/grambbledook/adventofcode2023/2023/task"
 	"github.com/grambbledook/adventofcode2023/util"
 	"maps"
 	"math"

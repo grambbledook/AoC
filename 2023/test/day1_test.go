@@ -1,7 +1,7 @@
 package test
 
 import (
-	"github.com/grambbledook/adventofcode2023/day1"
+	"github.com/grambbledook/adventofcode2023/2023/day1"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
