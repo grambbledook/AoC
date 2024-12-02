@@ -1,4 +1,4 @@
-package adventsofcode2023
+package main
 
 func main() {
 	println("Advent of code")
