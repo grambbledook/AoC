@@ -26,7 +26,7 @@ func Test_Day2_Task2_InputData(t *testing.T) {
 	assert.Equal(t, 665, result)
 }
 
-func Test_Util_Func(t *testing.T) {
+func Test_Day2_Util_Func(t *testing.T) {
 	tests := []struct {
 		input    []int
 		expected bool

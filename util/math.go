@@ -39,3 +39,10 @@ func Abs[N Number](num N) N {
 	}
 	return num
 }
+
+func FromBool(val bool) int {
+	if val {
+		return 1
+	}
+	return 0
+}
