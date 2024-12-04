@@ -158,7 +158,7 @@ func Parse(line string, chad bool) int {
 			next = NewInstruction(chad)
 		}
 
-		if next.write(c) {
+		if done := next.write(c); done {
 			instruction = next
 		}
 
