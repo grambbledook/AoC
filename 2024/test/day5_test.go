@@ -17,7 +17,11 @@ func Test_Day5_Task1_InputData(t *testing.T) {
 }
 
 func Test_Day5_Task2_TestData(t *testing.T) {
+	result := day5.Task2("../day5/test1")
+	assert.Equal(t, 123, result)
 }
 
 func Test_Day5_Task2_InputData(t *testing.T) {
+	result := day5.Task2("../day5/input")
+	assert.Equal(t, 6336, result)
 }

@@ -24,15 +24,51 @@ func (g *Graph) iter() iter.Seq2[string, string] {
 
 func Task1(file string) int {
 	lines := util.ReadLines(file)
-
 	graph, input := prepare(lines)
 
-	return process(graph, input, false)
+	var result int
+
+	for _, line := range input {
+		if !isValid(graph, line) {
+			continue
+		}
+
+		mid := len(line) / 2
+		val, err := strconv.Atoi(line[mid])
+
+		assert.NoError(err)
+		result += val
+	}
+
+	return result
+}
+
+func Task2(file string) int {
+	lines := util.ReadLines(file)
+	graph, input := prepare(lines)
+
+	var result int
+
+	for _, line := range input {
+		if isValid(graph, line) {
+			continue
+		}
+
+		fixed := topsort(graph, line)
+
+		mid := len(fixed) / 2
+		val, err := strconv.Atoi(fixed[mid])
+
+		assert.NoError(err)
+		result += val
+	}
+
+	return result
 }
 
 func prepare(lines []string) (Graph, [][]string) {
-
 	var idx int
+
 	graph := make(Graph)
 
 	for idx = 0; idx < len(lines); idx++ {
@@ -43,8 +79,8 @@ func prepare(lines []string) (Graph, [][]string) {
 		}
 
 		vals := strings.FieldsFunc(line, util.IsPipe)
-		assert.Assert(len(vals) == 2)
 
+		assert.Assert(len(vals) == 2)
 		graph[vals[0]] = append(graph[vals[0]], vals[1])
 	}
 
@@ -52,39 +88,15 @@ func prepare(lines []string) (Graph, [][]string) {
 
 	for idx = idx + 1; idx < len(lines); idx++ {
 		vals := strings.FieldsFunc(lines[idx], util.IsComma)
-
 		input = append(input, vals)
 	}
 
 	return graph, input
 }
 
-func process(graph Graph, input [][]string, fix bool) int {
-	var result int
-
-	for _, line := range input {
-		valid := isValid(graph, line)
-
-		if !valid && !fix {
-			continue
-		}
-
-		if !valid {
-			line = topsort(graph, line)
-		}
-
-		mid := len(line) / 2
-		val, err := strconv.Atoi(line[mid])
-		assert.NoError(err)
-
-		result += val
-	}
-
-	return result
-}
-
 func isValid(graph Graph, vals []string) bool {
 	positions := make(map[string]int)
+
 	for idx, val := range vals {
 		positions[val] = idx
 	}
@@ -105,5 +117,47 @@ func isValid(graph Graph, vals []string) bool {
 }
 
 func topsort(graph Graph, vals []string) []string {
-	return vals
+	indegree := make(map[string]int)
+
+	for _, u := range vals {
+		for _, v := range graph[u] {
+			indegree[v] += 1
+		}
+	}
+
+	result := make([]string, 0)
+
+	queue := make([]string, 0)
+	remainingNodes := make(map[string]bool)
+
+	for _, val := range vals {
+		if indegree[val] == 0 {
+			queue = append(queue, val)
+		}
+		remainingNodes[val] = true
+	}
+
+	for len(queue) > 0 {
+		lvl := queue
+		queue = make([]string, 0)
+
+		for _, u := range lvl {
+			remainingNodes[u] = false
+			result = append(result, u)
+
+			for _, v := range graph[u] {
+				if !remainingNodes[v] {
+					continue
+				}
+
+				indegree[v] -= 1
+
+				if indegree[v] == 0 {
+					queue = append(queue, v)
+				}
+			}
+		}
+	}
+
+	return result
 }
