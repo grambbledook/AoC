@@ -5,3 +5,9 @@ func NoError(err error) {
 		panic("No Error assertion failed: " + err.Error())
 	}
 }
+
+func Assert(condition bool) {
+	if !condition {
+		panic("Assertion failed!")
+	}
+}
