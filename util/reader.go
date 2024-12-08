@@ -5,6 +5,20 @@ import (
 	"os"
 )
 
+func ReadLinesFunc[T any](name string, f func(string) []T) [][]T {
+	open, _ := os.Open(name)
+	defer open.Close()
+
+	in := bufio.NewReader(open)
+
+	var lines [][]T
+	for line, _, err := in.ReadLine(); err == nil; line, _, err = in.ReadLine() {
+		lines = append(lines, f(string(line)))
+	}
+
+	return lines
+}
+
 func ReadLines(name string) []string {
 	open, _ := os.Open(name)
 	defer open.Close()
@@ -31,5 +45,4 @@ func ReadMatrix(name string) [][]rune {
 	}
 
 	return lines
-
 }
