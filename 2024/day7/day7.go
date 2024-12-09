@@ -50,8 +50,6 @@ func Task2(file string) int {
 		if task.isValid(1, 0) {
 			result += task.expected
 		}
-
-		println(result)
 	}
 
 	return result
@@ -71,20 +69,22 @@ func (t *Task) isValid(idx int, total int) bool {
 	if idx == 1 {
 		mul = t.isValid(idx+1, t.vals[0]*t.vals[1])
 		add = t.isValid(idx+1, t.vals[0]+t.vals[1])
-		con = t.isValid(idx+1, concat(t.vals[0], t.vals[1]))
+		con = t.isValid(idx+1, Concat(t.vals[0], t.vals[1]))
 	} else {
 		mul = t.isValid(idx+1, total*t.vals[idx])
 		add = t.isValid(idx+1, total+t.vals[idx])
-		con = t.isValid(idx+1, concat(total, t.vals[idx]))
+		con = t.isValid(idx+1, Concat(total, t.vals[idx]))
 	}
 
 	return add || mul || (con && t.concat)
 }
 
-func concat(a, b int) int {
-	for b != 0 {
-		rem, mod := b/10, b%10
-		a, b = a*10+mod, rem
+func Concat(a, b int) int {
+	shift, val := 1, b
+
+	for val != 0 {
+		shift, val = shift*10, val/10
 	}
-	return a
+
+	return a*shift + b
 }
