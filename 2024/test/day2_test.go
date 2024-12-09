@@ -7,22 +7,22 @@ import (
 )
 
 func Test_Day2_Task1_TestData(t *testing.T) {
-	result := day2.Task1("../day2/test1")
+	result := day2.Task1("../day2/test1.data")
 	assert.Equal(t, 2, result)
 }
 
 func Test_Day2_Task1_InputData(t *testing.T) {
-	result := day2.Task1("../day2/input")
+	result := day2.Task1("../day2/input.data")
 	assert.Equal(t, 631, result)
 }
 
 func Test_Day2_Task2_TestData(t *testing.T) {
-	result := day2.Task2("../day2/test1")
+	result := day2.Task2("../day2/test1.data")
 	assert.Equal(t, 4, result)
 }
 
 func Test_Day2_Task2_InputData(t *testing.T) {
-	result := day2.Task2("../day2/input")
+	result := day2.Task2("../day2/input.data")
 	assert.Equal(t, 665, result)
 }
 

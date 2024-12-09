@@ -7,21 +7,21 @@ import (
 )
 
 func Test_Day1_1_TestData(t *testing.T) {
-	result := day1.Compute(day1.Task1, "../day1/test1")
+	result := day1.Compute(day1.Task1, "../day1/test1.data")
 	assert.Equal(t, 142, result)
 }
 
 func Test_Day1_1_TaskData(t *testing.T) {
-	result := day1.Compute(day1.Task1, "../day1/input")
+	result := day1.Compute(day1.Task1, "../day1/input.data")
 	assert.Equal(t, 54968, result)
 }
 
 func Test_Day1_2_TestData(t *testing.T) {
-	result := day1.Compute(day1.Task2, "../day1/test2")
+	result := day1.Compute(day1.Task2, "../day1/test2.data")
 	assert.Equal(t, 281, result)
 }
 
 func Test_Day1_2_TaskData(t *testing.T) {
-	result := day1.Compute(day1.Task2, "../day1/input")
+	result := day1.Compute(day1.Task2, "../day1/input.data")
 	assert.Equal(t, 54094, result)
 }

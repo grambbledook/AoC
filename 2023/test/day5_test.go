@@ -8,21 +8,21 @@ import (
 )
 
 func Test_Day5_1_TestData(t *testing.T) {
-	result := day5.Task1(util.ReadLines("../day5/test"))
+	result := day5.Task1(util.ReadLines("../day5/test.data"))
 	assert.Equal(t, 35, result)
 }
 
 func Test_Day5_1_TaskData(t *testing.T) {
-	result := day5.Task1(util.ReadLines("../day5/input"))
+	result := day5.Task1(util.ReadLines("../day5/input.data"))
 	assert.Equal(t, 165788812, result)
 }
 
 func Test_Day5_2_TestData(t *testing.T) {
-	result := day5.Task2(util.ReadLines("../day5/test"))
+	result := day5.Task2(util.ReadLines("../day5/test.data"))
 	assert.Equal(t, 46, result)
 }
 
 func Test_Day5_2_TaskData(t *testing.T) {
-	result := day5.Task2(util.ReadLines("../day5/input"))
+	result := day5.Task2(util.ReadLines("../day5/input.data"))
 	assert.Equal(t, 1928058, result)
 }
